@@ -22,7 +22,8 @@ public class StringOps {
     ////// ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        System.out.println(camelCase("  tWo   wordS"));
+        System.out.println(camelCase("hello World"));
+        allIndexOf("MMMM", 'M');
     }
 
     public static String capVowelsLowRest(String string) {
@@ -54,47 +55,53 @@ public class StringOps {
         String outpuString;
         boolean spaceBefore = false;
 
-        
         for (int i = 0; i < string.length(); i++) {
 
-            if ((spaceBefore && (string.charAt(i) >= 97 &&
-                    string.charAt(i) <= 122))) {
-                newString = newString + (char) (string.charAt(i) - 32);
-                spaceBefore = false;
+            if (spaceBefore) {
+                if ((string.charAt(i) >= 97 &&
+                        string.charAt(i) <= 122)) {
+                    newString = newString + (char) (string.charAt(i) - 32);
+                    spaceBefore = false;
+                } else if (string.charAt(i) >= 65 &&
+                        string.charAt(i) <= 90) {
+                    newString = newString + string.charAt(i);
+                    spaceBefore = false;
+                } else if (string.charAt(i) == 32) {
+                    spaceBefore = true;
+                }
 
             } else if (string.charAt(i) != 32 && (string.charAt(i) >= 65 && string.charAt(i) <= 90)) {
 
                 newString = newString + (char) (string.charAt(i) + 32);
                 spaceBefore = false;
 
-            } else if (string.charAt(i)== 32) {
+            } else if (string.charAt(i) == 32) {
                 spaceBefore = true;
-                
-            }
-            else {
+
+            } else {
                 newString = newString + string.charAt(i);
                 spaceBefore = false;
             }
         }
 
-
-
-       /* copyString = newString;
-
-         for (int i = 0; i < copyString.length(); i++) {
-            if (copyString.charAt(i) == 32) {
-                copyString = copyString.substring(copyString.indexOf(' ') + 1);
-                spaceBefore = true;
-            } else if (spaceBefore) {
-                newString = newString + (char) (newString.charAt(i) - 32);
-
-                spaceBefore = false;
-            } else {
-                newString = newString + newString.charAt(i);
-                spaceBefore = false;
-            }
-
-        } */
+        /*
+         * copyString = newString;
+         * 
+         * for (int i = 0; i < copyString.length(); i++) {
+         * if (copyString.charAt(i) == 32) {
+         * copyString = copyString.substring(copyString.indexOf(' ') + 1);
+         * spaceBefore = true;
+         * } else if (spaceBefore) {
+         * newString = newString + (char) (newString.charAt(i) - 32);
+         * 
+         * spaceBefore = false;
+         * } else {
+         * newString = newString + newString.charAt(i);
+         * spaceBefore = false;
+         * }
+         * 
+         * }
+         */
 
         return newString;
     }
@@ -104,7 +111,7 @@ public class StringOps {
         int size = 0;
         String copyString = string;
 
-        for (int i = 0; i < copyString.length(); i++) {
+        for (int i = 0; i < string.length(); i++) {
 
             if (copyString.indexOf(chr) != -1) {
                 size++;
