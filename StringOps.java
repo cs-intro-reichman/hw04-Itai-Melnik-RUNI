@@ -22,7 +22,7 @@ public class StringOps {
     ////// ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        System.out.println(camelCase("   hello World"));
+        System.out.println(camelCase("    HELLO   world"));
         allIndexOf("MMMM", 'M');
     }
 
@@ -87,6 +87,9 @@ public class StringOps {
 
             outpuString = (char)(newString.charAt(0)+32) + newString.substring(1);
 
+        }
+        else{
+            outpuString = newString;
         }
 
         /*
