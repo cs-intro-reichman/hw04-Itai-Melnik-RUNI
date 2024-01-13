@@ -45,6 +45,8 @@ public class ArrayOps {
 
         }
 
+        if(secondMax == Max) secondMax =Max;
+
         return secondMax;
     }
 

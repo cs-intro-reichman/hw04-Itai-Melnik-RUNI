@@ -22,7 +22,7 @@ public class StringOps {
     ////// ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        System.out.println(camelCase("hello World"));
+        System.out.println(camelCase("   hello World"));
         allIndexOf("MMMM", 'M');
     }
 
@@ -52,12 +52,14 @@ public class StringOps {
     public static String camelCase(String string) {
         // Write your code here:
         String newString = "";
-        String outpuString;
+        String outpuString = "";
         boolean spaceBefore = false;
 
         for (int i = 0; i < string.length(); i++) {
 
-            if (spaceBefore) {
+            if (string.charAt(i) == 32) {
+                spaceBefore = true;
+            } else if (spaceBefore) {
                 if ((string.charAt(i) >= 97 &&
                         string.charAt(i) <= 122)) {
                     newString = newString + (char) (string.charAt(i) - 32);
@@ -74,14 +76,17 @@ public class StringOps {
 
                 newString = newString + (char) (string.charAt(i) + 32);
                 spaceBefore = false;
-
-            } else if (string.charAt(i) == 32) {
-                spaceBefore = true;
-
             } else {
                 newString = newString + string.charAt(i);
                 spaceBefore = false;
             }
+        }
+
+        if ((newString.charAt(0) >= 65 &&
+        newString.charAt(0) <= 90)){
+
+            outpuString = (char)(newString.charAt(0)+32) + newString.substring(1);
+
         }
 
         /*
@@ -103,7 +108,7 @@ public class StringOps {
          * }
          */
 
-        return newString;
+        return outpuString;
     }
 
     public static int[] allIndexOf(String string, char chr) {
